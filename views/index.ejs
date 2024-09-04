@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SIT725- Task4.2P (Add a database)</title>
+    <link rel="stylesheet" href="/css/materialize.min.css">
+    <link rel="stylesheet" href="/style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var socket = io();
+
+            var chatIcon = document.getElementById('chat-icon');
+            var chatBox = document.getElementById('chat-box');
+            var chatForm = document.getElementById('chat-form');
+            var chatInput = document.getElementById('chat-input');
+            var chatMessages = document.getElementById('chat-messages');
+
+            chatIcon.onclick = function() {
+                chatBox.style.display = chatBox.style.display === 'block' ? 'none' : 'block';
+            };
+
+            chatForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                if (chatInput.value) {
+                    socket.emit('chat message', chatInput.value);
+                    chatInput.value = '';
+                }
+            });
+
+            socket.on('chat message', function(msg) {
+                var item = document.createElement('li');
+                item.textContent = msg;
+                chatMessages.appendChild(item);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            });
+
+            M.AutoInit();
+        });
+    </script>
+    <style>
+        #chat-box {
+            display: none;
+            position: fixed;
+            bottom: 50px;
+            right: 30px;
+            width: 300px;
+            height: 400px;
+            background-color: white;
+            box-shadow: 2px 2px 10px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            padding: 10px;
+            z-index: 1000;
+        }
+        #chat-messages {
+            height: 300px;
+            overflow-y: auto;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="banner">
+        <nav class="navbar">
+            <div class="container">
+                <a href="/" class="brand-logo">
+                    <img src="/logo.png" class="logo" alt="Logo">
+                </a>
+                <ul class="right hide-on-med-and-down">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="#">Shopping Center Parking</a></li>
+                    <li><a href="#">Public Parking</a></li>
+                    <li><a href="#">Private Parking</a></li>
+                    <li><a href="#">No Parking Areas</a></li>
+                </ul>
+            </div>
+        </nav>
+        <div class="top-buttons">
+            <button class="btn waves-effect waves-light login-btn"><span></span>Login</button>
+            <button class="btn waves-effect waves-light signup-btn modal-trigger" data-target="signup-modal"><span></span>Signup</button>
+        </div>
+        <div class="content">
+            <h1>PARK YOUR VEHICLE</h1>
+            <p>Search for available parking spots in your preferred area and book your parking.</p>
+            <div>
+                <button class="btn waves-effect waves-light"><span></span>Search based on Location</button>
+                <button class="btn waves-effect waves-light"><span></span>Show all the available spots</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="signup-modal" class="modal">
+        <div class="modal-content">
+            <h4>Sign Up</h4>
+            <form id="signup-form" action="/signup" method="POST">
+                <div class="input-field">
+                    <input id="full_name" name="full_name" type="text" class="validate" required>
+                    <label for="full_name">Full Name</label>
+                </div>
+                <div class="input-field">
+                    <input id="email" name="email" type="email" class="validate" required>
+                    <label for="email">Email Address</label>
+                </div>
+                <div class="input-field">
+                    <input id="phone" name="phone" type="tel" class="validate" required>
+                    <label for="phone">Phone Number</label>
+                </div>
+                <div class="input-field">
+                    <input id="username" name="username" type="text" class="validate" required>
+                    <label for="username">Username</label>
+                </div>
+                <div class="input-field">
+                    <input id="password" name="password" type="password" class="validate" required>
+                    <label for="password">Password</label>
+                </div>
+                <button type="submit" class="btn waves-effect waves-light">Sign Up</button>
+            </form>
+        </div>
+    </div>
+
+    <a href="#!" class="btn-floating btn-large waves-effect waves-light red" id="chat-icon" style="position: fixed; bottom: 20px; right: 20px;"><i class="material-icons">chat</i></a>
+    <div id="chat-box">
+        <ul id="chat-messages" class="collection"></ul>
+        <form id="chat-form">
+            <input id="chat-input" autocomplete="off" placeholder="Type a message..." class="input-field">
+            <button class="btn waves-effect waves-light">Send</button>
+        </form>
+    </div>
+
+    <script src="/js/materialize.min.js"></script>
+</body>
+</html>
