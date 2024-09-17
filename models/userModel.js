@@ -5,7 +5,7 @@ const userSchema = new mongoose.Schema({
   email: String,
   phone: String,
   username: String,
-  password: String,
+  password: String, // Storing as plain text (not recommended for production)
 });
 
 const User = mongoose.model('User', userSchema);

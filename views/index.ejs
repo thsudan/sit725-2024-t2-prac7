@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>SIT725- Task4.2P (Add a database)</title>
+    <title>SportConnect</title>
     <link rel="stylesheet" href="/css/materialize.min.css">
     <link rel="stylesheet" href="/style.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -69,53 +69,24 @@
                 </a>
                 <ul class="right hide-on-med-and-down">
                     <li><a href="/">Home</a></li>
-                    <li><a href="#">Shopping Center Parking</a></li>
-                    <li><a href="#">Public Parking</a></li>
-                    <li><a href="#">Private Parking</a></li>
-                    <li><a href="#">No Parking Areas</a></li>
+                    <li><a href="#">Available Sports</a></li>
+                    <li><a href="#">Events</a></li>
+                    <li><a href="#">Match Schedule</a></li>
+                    <li><a href="#">About us</a></li>
                 </ul>
             </div>
         </nav>
         <div class="top-buttons">
-            <button class="btn waves-effect waves-light login-btn"><span></span>Login</button>
-            <button class="btn waves-effect waves-light signup-btn modal-trigger" data-target="signup-modal"><span></span>Signup</button>
+            <a href="/login" class="btn waves-effect waves-light login-btn"><span></span>Login</a>
+            <a href="/signup" class="btn waves-effect waves-light signup-btn"><span></span>Signup</a>
         </div>
         <div class="content">
-            <h1>PARK YOUR VEHICLE</h1>
-            <p>Search for available parking spots in your preferred area and book your parking.</p>
+            <h1>SEARCH FOR TEAM MATES</h1>
+            <p>Search for available sports enthusiasts who are seeking team members.</p>
             <div>
-                <button class="btn waves-effect waves-light"><span></span>Search based on Location</button>
-                <button class="btn waves-effect waves-light"><span></span>Show all the available spots</button>
+                <a href="/login" class="btn waves-effect waves-light"><span></span>Search based on Interest</a>
+                <a href="/login" class="btn waves-effect waves-light"><span></span>Show all the available sports</a>
             </div>
-        </div>
-    </div>
-
-    <div id="signup-modal" class="modal">
-        <div class="modal-content">
-            <h4>Sign Up</h4>
-            <form id="signup-form" action="/signup" method="POST">
-                <div class="input-field">
-                    <input id="full_name" name="full_name" type="text" class="validate" required>
-                    <label for="full_name">Full Name</label>
-                </div>
-                <div class="input-field">
-                    <input id="email" name="email" type="email" class="validate" required>
-                    <label for="email">Email Address</label>
-                </div>
-                <div class="input-field">
-                    <input id="phone" name="phone" type="tel" class="validate" required>
-                    <label for="phone">Phone Number</label>
-                </div>
-                <div class="input-field">
-                    <input id="username" name="username" type="text" class="validate" required>
-                    <label for="username">Username</label>
-                </div>
-                <div class="input-field">
-                    <input id="password" name="password" type="password" class="validate" required>
-                    <label for="password">Password</label>
-                </div>
-                <button type="submit" class="btn waves-effect waves-light">Sign Up</button>
-            </form>
         </div>
     </div>
 
